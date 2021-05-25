@@ -126,7 +126,7 @@ BoundingBox getExtent(GDALDataset *dataset){
 
 void writePly(const std::string &filename, int thread){
     // Start writing ply file
-    std::ofstream f (filename);
+    std::ofstream f (filename, std::ios::binary);
     f << "ply" << std::endl;
 
     if (IS_BIG_ENDIAN){
@@ -336,7 +336,7 @@ int main(int argc, char **argv) {
 
     Aggressiveness.value = std::min(10, std::max(1, Aggressiveness.value));
     logWriter.verbose = Verbose.set;
-    logWriter.outputFile = "dem2mesh.txt";
+    logWriter.outputFile = NULL;
     logArgs(params, logWriter);
 
     GDALDataset  *dataset;
